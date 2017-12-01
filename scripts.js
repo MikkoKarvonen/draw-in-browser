@@ -1,5 +1,6 @@
 var canvas = document.querySelector('#draw');
 var ctx = canvas.getContext('2d');
+ctx.lineWidth = 25;
 
 var drawing = false;
 var lastX = 0;
@@ -22,3 +23,14 @@ canvas.addEventListener('mousedown', (e) => {
 });
 canvas.addEventListener('mouseup', () => drawing = false);
 canvas.addEventListener('mouseout', () => drawing = false);
+
+var inputs = document.querySelectorAll('.controls input');
+
+function handleUpdate() {
+  if (this.name === 'lWidth'){
+    ctx.lineWidth = this.value;
+  }
+}
+
+inputs.forEach(input => input.addEventListener('change', handleUpdate));
+inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
